@@ -3,6 +3,7 @@ using DotNetDoodle.OAuthServer.Infrastructure.Managers;
 using DotNetDoodle.OAuthServer.Infrastructure.Objects;
 using DotNetDoodle.OAuthServer.Infrastructure.Providers;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin.Testing;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DotNetDoodle.OAuthServer.Tests
         {
             Mock<IClientManager> clientManagerMock = new Mock<IClientManager>();
             clientManagerMock.Setup(c => c.GetVerfiedClientAsync("1234", "12345678"))
-                .Returns<string, string>((clientId, secret) => Task.FromResult(new Client 
+                .Returns<string, string>((clientId, secret) => Task.FromResult(new Client
                 {
                     Id = clientId,
                     Flow = Infrastructure.OAuthFlow.Client,
@@ -35,7 +36,13 @@ namespace DotNetDoodle.OAuthServer.Tests
             builder.Register(c => clientManagerMock.Object).As<IClientManager>();
             IContainer container = builder.Build();
 
-            Startup startup = new Startup(container);
+            using (TestServer testServer = TestServer.Create(app =>
+                {
+                    Startup startup = new Startup(container);
+                    startup.Configuration(app);
+                }))
+            {
+            }
         }
     }
 }

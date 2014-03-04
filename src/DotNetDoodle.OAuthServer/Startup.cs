@@ -1,16 +1,10 @@
-﻿using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DotNetDoodle.Owin.Dependencies;
-using DotNetDoodle.Owin.Dependencies.Autofac;
-using Microsoft.Owin.Security.OAuth;
-using DotNetDoodle.Owin;
-using Autofac;
-using Microsoft.Owin.Logging;
-using System.Reflection;
+﻿using Autofac;
+using DotNetDoodle.OAuthServer.Infrastructure.Config;
 using DotNetDoodle.OAuthServer.Infrastructure.DependencyInjection;
+using DotNetDoodle.Owin;
+using Microsoft.Owin.Logging;
+using Owin;
+using System;
 
 namespace DotNetDoodle.OAuthServer
 {
@@ -24,8 +18,14 @@ namespace DotNetDoodle.OAuthServer
             try
             {
                 IContainer container = AutofacConfig.InitializeContainer();
+                IConfigurationManager configManager = container.Resolve<IConfigurationManager>();
+                if (configManager == null)
+                {
+                    throw new InvalidOperationException("OAuth server could not fuction without an IConfigurationManager implementation. You need to register one through the IoC container.");
+                }
+
                 app.UseAutofacContainer(container)
-                    .RunOAuthServer()
+                    .RunOAuthServer(configManager)
                     .RunWebApi();
             }
             catch (Exception ex)

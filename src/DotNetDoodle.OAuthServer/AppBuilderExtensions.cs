@@ -1,6 +1,8 @@
-﻿using DotNetDoodle.Owin;
+﻿using DotNetDoodle.OAuthServer.Infrastructure.Config;
+using DotNetDoodle.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System;
 using System.Web.Http;
 using WebApiContrib.Formatting.Razor;
 
@@ -23,10 +25,11 @@ namespace DotNetDoodle.OAuthServer
             return app.UseWebApiWithContainer(config);
         }
 
-        public static IAppBuilder RunOAuthServer(this IAppBuilder app)
+        public static IAppBuilder RunOAuthServer(this IAppBuilder app, IConfigurationManager configManager)
         {
             OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions 
             {
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(configManager.AccessTokenTimeoutInSeconds)
             };
 
             return app.UseOAuthAuthorizationServer(oAuthServerOptions);

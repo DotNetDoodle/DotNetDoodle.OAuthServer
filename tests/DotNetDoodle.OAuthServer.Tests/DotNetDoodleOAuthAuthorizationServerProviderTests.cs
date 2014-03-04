@@ -1,6 +1,8 @@
-﻿using DotNetDoodle.OAuthServer.Infrastructure.Managers;
+﻿using Autofac;
+using DotNetDoodle.OAuthServer.Infrastructure.Managers;
 using DotNetDoodle.OAuthServer.Infrastructure.Objects;
 using DotNetDoodle.OAuthServer.Infrastructure.Providers;
+using Microsoft.Owin.Security.OAuth;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -29,8 +31,11 @@ namespace DotNetDoodle.OAuthServer.Tests
             Mock<IServiceProvider> serviceProvider = new Mock<IServiceProvider>();
             serviceProvider.Setup(m => m.GetService(typeof(IClientManager))).Returns(clientManagerMock.Object);
 
-            var provider = new DotNetDoodleOAuthAuthorizationServerProvider(null, null);
-            provider.ValidateClientAuthentication(null);
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.Register(c => clientManagerMock.Object).As<IClientManager>();
+            IContainer container = builder.Build();
+
+            Startup startup = new Startup(container);
         }
     }
 }

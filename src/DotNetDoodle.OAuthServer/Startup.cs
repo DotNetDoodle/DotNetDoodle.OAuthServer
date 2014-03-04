@@ -10,6 +10,22 @@ namespace DotNetDoodle.OAuthServer
 {
     public class Startup
     {
+        private readonly IContainer _container;
+
+        public Startup()
+        {
+        }
+
+        public Startup(IContainer container)
+        {
+            if (container == null)
+            {
+                throw new ArgumentNullException("container");
+            }
+
+            _container = container;
+        }
+
         public void Configuration(IAppBuilder app)
         {
             ILogger logger = app.CreateLogger<Startup>();
@@ -17,7 +33,7 @@ namespace DotNetDoodle.OAuthServer
 
             try
             {
-                IContainer container = AutofacConfig.InitializeContainer();
+                IContainer container = (_container != null) ? _container : AutofacConfig.InitializeContainer();
                 IConfigurationManager configManager = container.Resolve<IConfigurationManager>();
                 if (configManager == null)
                 {

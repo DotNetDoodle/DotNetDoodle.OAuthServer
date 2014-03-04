@@ -75,7 +75,16 @@ namespace DotNetDoodle.OAuthServer
             /// URI used in the authorization request, or was issued to another client.
             /// </summary>
             public const string InvalidGrant = "invalid_grant";
+
+            /// <summary>
+            /// The authorization server does not support obtaining an authorization code 
+            /// (or access token for Implicit Grant) using this method.
+            /// </summary>
             public const string UnsupportedResponseType = "unsupported_response_type";
+
+            /// <summary>
+            /// The authorization grant type is not supported by the authorization server.
+            /// </summary>
             public const string UnsupportedGrantType = "unsupported_grant_type";
 
             /// <summary>

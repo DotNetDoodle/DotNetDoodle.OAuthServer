@@ -1,5 +1,7 @@
 ﻿using DotNetDoodle.OAuthServer.Infrastructure.Config;
+using DotNetDoodle.OAuthServer.Infrastructure.Providers;
 using DotNetDoodle.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
@@ -27,9 +29,14 @@ namespace DotNetDoodle.OAuthServer
 
         public static IAppBuilder RunOAuthServer(this IAppBuilder app, IConfigurationManager configManager)
         {
-            OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions 
+            OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions
             {
-                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(configManager.AccessTokenTimeoutInSeconds)
+#if DEBUG
+                AllowInsecureHttp = true,
+#endif
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(configManager.AccessTokenTimeoutInSeconds),
+                Provider = new DotNetDoodleOAuthAuthorizationServerProvider(app, configManager)
             };
 
             return app.UseOAuthAuthorizationServer(oAuthServerOptions);

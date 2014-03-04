@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer", "src\DotNetDoodle.OAuthServer\DotNetDoodle.OAuthServer.csproj", "{076769E6-A9E9-4F59-A14B-CBE14FE2E431}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Tests", "tests\DotNetDoodle.OAuthServer.Tests\DotNetDoodle.OAuthServer.Tests.csproj", "{8C936D54-DA82-4778-BA98-2FE4D676C003}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{076769E6-A9E9-4F59-A14B-CBE14FE2E431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076769E6-A9E9-4F59-A14B-CBE14FE2E431}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076769E6-A9E9-4F59-A14B-CBE14FE2E431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,8 @@ using Microsoft.Owin.Security.OAuth;
 using DotNetDoodle.Owin;
 using Autofac;
 using Microsoft.Owin.Logging;
+using System.Reflection;
+using DotNetDoodle.OAuthServer.Infrastructure.DependencyInjection;
 
 namespace DotNetDoodle.OAuthServer
 {
@@ -33,15 +35,6 @@ namespace DotNetDoodle.OAuthServer
             }
 
             logger.WriteInformation("OAuth Server is successfully configured.");
-        }
-    }
-
-    public static class AutofacConfig
-    {
-        public static IContainer InitializeContainer()
-        {
-            ContainerBuilder builder = new ContainerBuilder();
-            return builder.Build();
         }
     }
 }

@@ -17,7 +17,8 @@ namespace DotNetDoodle.OAuthServer
             config.Formatters.Add(new RazorViewFormatter());
 
             // Configure routes
-            config.Routes.MapHttpRoute("OAuthAuthorizeRoute", "oauth/authorize");
+            config.Routes.MapHttpRoute("OAuthAuthorizeRoute", "oauth/authorize", new { controller = "authorize" });
+            config.Routes.MapHttpRoute("OAuthLoginRoute", "login", new { controller = "login" });
 
             return app.UseWebApiWithContainer(config);
         }

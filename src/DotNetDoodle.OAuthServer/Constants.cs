@@ -100,6 +100,11 @@ namespace DotNetDoodle.OAuthServer
             /// to the client via an HTTP redirect.)
             /// </summary>
             public const string TemporarilyUnavailable = "temporarily_unavailable";
+
+            /// <summary>
+            /// The requested scope is invalid, unknown, malformed, or exceeds the scope granted by the resource owner.
+            /// </summary>
+            public const string InvalidScope = "invalid_scope";
         }
 
         public static class Extra

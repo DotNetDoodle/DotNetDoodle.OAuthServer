@@ -124,7 +124,7 @@ namespace DotNetDoodle.OAuthServer
 
         public static class Owin
         {
-            public const string ClientContextKey = "OAuthServer:oauth:client";
+            public const string ClientObjectEnvironmentKey = "OAuthServer:oauth:client";
         }
     }
 }

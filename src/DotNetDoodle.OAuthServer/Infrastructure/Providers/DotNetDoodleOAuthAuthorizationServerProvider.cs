@@ -39,7 +39,7 @@ namespace DotNetDoodle.OAuthServer.Infrastructure.Providers
                     if (client != null)
                     {
                         _logger.WriteVerbose(string.Format("Client has been verified. clientId: {0}", clientId));
-                        context.OwinContext.Set<Client>(Constants.Owin.ClientContextKey, client);
+                        context.OwinContext.Set<Client>(Constants.Owin.ClientObjectEnvironmentKey, client);
                         context.Validated(clientId);
                     }
                     else
@@ -64,9 +64,26 @@ namespace DotNetDoodle.OAuthServer.Infrastructure.Providers
             }
         }
 
+        // Actual grants
+
         public override Task GrantClientCredentials(OAuthGrantClientCredentialsContext context)
         {
             return base.GrantClientCredentials(context);
+        }
+
+        public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+        {
+            _logger.WriteVerbose("BoM: GrantResourceOwnerCredentials");
+
+            if (string.IsNullOrEmpty(context.ClientId) == false)
+            {
+                Client client = context.OwinContext.Get<Client>(Constants.Owin.ClientObjectEnvironmentKey);
+                if (client.Flow == OAuthFlow.ResourceOwner) 
+                {
+                }
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

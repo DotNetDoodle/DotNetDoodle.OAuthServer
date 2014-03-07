@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Tests", "tests\DotNetDoodle.OAuthServer.Tests\DotNetDoodle.OAuthServer.Tests.csproj", "{8C936D54-DA82-4778-BA98-2FE4D676C003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Data", "src\DotNetDoodle.OAuthServer.Data\DotNetDoodle.OAuthServer.Data.csproj", "{26AA24B9-6B05-4BE3-88A1-0AC282960690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Identity.Data", "DotNetDoodle.OAuthServer.Identity.Data\DotNetDoodle.OAuthServer.Identity.Data.csproj", "{4DB2582A-8B7F-4E39-A12E-D66ACB975376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C936D54-DA82-4778-BA98-2FE4D676C003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26AA24B9-6B05-4BE3-88A1-0AC282960690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26AA24B9-6B05-4BE3-88A1-0AC282960690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26AA24B9-6B05-4BE3-88A1-0AC282960690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26AA24B9-6B05-4BE3-88A1-0AC282960690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB2582A-8B7F-4E39-A12E-D66ACB975376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB2582A-8B7F-4E39-A12E-D66ACB975376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB2582A-8B7F-4E39-A12E-D66ACB975376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB2582A-8B7F-4E39-A12E-D66ACB975376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

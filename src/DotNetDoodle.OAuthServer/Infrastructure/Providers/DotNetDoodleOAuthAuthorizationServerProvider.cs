@@ -13,7 +13,6 @@ namespace DotNetDoodle.OAuthServer.Infrastructure.Providers
 {
     public class DotNetDoodleOAuthAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
-        private const string ClientContextKey = "OAuthServer:oauth:client";
         private readonly IConfigurationManager _configManager;
         private readonly ILogger _logger;
 
@@ -40,29 +39,29 @@ namespace DotNetDoodle.OAuthServer.Infrastructure.Providers
                     if (client != null)
                     {
                         _logger.WriteVerbose(string.Format("Client has been verified. clientId: {0}", clientId));
-                        context.OwinContext.Set<Client>(ClientContextKey, client);
+                        context.OwinContext.Set<Client>(Constants.Owin.ClientContextKey, client);
                         context.Validated(clientId);
-                        return;
                     }
                     else
                     {
                         _logger.WriteInformation(string.Format("Client could not be validated. clientId: {0}", clientId));
                         context.SetError(Constants.Errors.InvalidClient, "Client credentials are invalid.");
+                        context.Rejected();
                     }
                 }
                 catch (Exception ex)
                 {
                     _logger.WriteError("Could not get the client through the IClientManager implementation.", ex);
                     context.SetError(Constants.Errors.ServerError);
+                    context.Rejected();
                 }
             }
             else
             {
                 _logger.WriteInformation(string.Format("The client credentials could not be retrieved. Headers: {0}", string.Join("; ", context.Request.Headers.Select(header => string.Concat(header.Key, ": ", header.Value)).ToArray())));
                 context.SetError(Constants.Errors.InvalidClient, "Client credentials could not be retrieved through the Authorization header.");
+                context.Rejected();
             }
-
-            context.Rejected();
         }
 
         public override Task GrantClientCredentials(OAuthGrantClientCredentialsContext context)

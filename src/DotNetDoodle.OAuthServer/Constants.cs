@@ -112,5 +112,10 @@ namespace DotNetDoodle.OAuthServer
             public const string ClientId = "client_id";
             public const string RedirectUri = "redirect_uri";
         }
+
+        public static class Owin
+        {
+            public const string ClientContextKey = "OAuthServer:oauth:client";
+        }
     }
 }

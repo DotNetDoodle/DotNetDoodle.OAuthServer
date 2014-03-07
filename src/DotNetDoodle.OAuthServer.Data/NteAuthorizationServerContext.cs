@@ -7,7 +7,7 @@ namespace DotNetDoodle.OAuthServer.Data
 {
     public class OAuthServerContext : DbContext
     {
-        public OAuthServerContext() : base("NteAuthorizationServerContext")
+        public OAuthServerContext() : base("OAuthServerContext")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

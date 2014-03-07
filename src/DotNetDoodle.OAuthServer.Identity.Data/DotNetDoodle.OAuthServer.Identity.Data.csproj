@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="IdentityContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

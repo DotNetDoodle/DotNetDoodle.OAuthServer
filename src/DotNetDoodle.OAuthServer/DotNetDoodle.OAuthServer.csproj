@@ -149,6 +149,8 @@
     <Compile Include="Infrastructure\Crypto.cs" />
     <Compile Include="Infrastructure\DependencyInjection\AutofacConfig.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ConfigurationManagerModule.cs" />
+    <Compile Include="Infrastructure\DependencyInjection\IdentityContextModule.cs" />
+    <Compile Include="Infrastructure\DependencyInjection\IdentityModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ManagerModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\OwinModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\WebApiModule.cs" />
@@ -162,7 +164,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Data\DotNetDoodle.OAuthServer.Data.csproj">
+      <Project>{26aa24b9-6b05-4be3-88a1-0ac282960690}</Project>
+      <Name>DotNetDoodle.OAuthServer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Identity.Data\DotNetDoodle.OAuthServer.Identity.Data.csproj">
+      <Project>{4db2582a-8b7f-4e39-a12e-d66acb975376}</Project>
+      <Name>DotNetDoodle.OAuthServer.Identity.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

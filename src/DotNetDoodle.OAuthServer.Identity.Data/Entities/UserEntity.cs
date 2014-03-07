@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDoodle.OAuthServer.Identity.Data.Entities
 {
-    public class User : IdentityUser
+    public class UserEntity : IdentityUser
     {
     }
 }

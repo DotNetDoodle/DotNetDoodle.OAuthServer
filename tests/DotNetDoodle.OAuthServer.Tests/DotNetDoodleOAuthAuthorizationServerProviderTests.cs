@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DotNetDoodle.OAuthServer.Common;
 using DotNetDoodle.OAuthServer.Infrastructure.Managers;
 using DotNetDoodle.OAuthServer.Infrastructure.Objects;
 using DotNetDoodle.OAuthServer.Infrastructure.Providers;
@@ -24,7 +25,7 @@ namespace DotNetDoodle.OAuthServer.Tests
                 .Returns<string, string>((clientId, secret) => Task.FromResult(new Client
                 {
                     Id = clientId,
-                    Flow = Infrastructure.OAuthFlow.Client,
+                    Flow = OAuthFlow.Client,
                     RequireConsent = true,
                     AllowRefreshToken = true
                 }));

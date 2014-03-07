@@ -1,4 +1,5 @@
-﻿using DotNetDoodle.OAuthServer.Identity.Data.Entities;
+﻿using DotNetDoodle.OAuthServer.Common;
+using DotNetDoodle.OAuthServer.Identity.Data.Entities;
 using DotNetDoodle.OAuthServer.Infrastructure.Config;
 using DotNetDoodle.OAuthServer.Infrastructure.Managers;
 using DotNetDoodle.OAuthServer.Infrastructure.Objects;

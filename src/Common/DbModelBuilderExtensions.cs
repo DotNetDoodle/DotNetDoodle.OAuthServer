@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Pluralization;
 
-namespace DotNetDoodle.OAuthServer.Identity.Data
+namespace DotNetDoodle.OAuthServer
 {
     internal static class DbModelBuilderExtensions
     {

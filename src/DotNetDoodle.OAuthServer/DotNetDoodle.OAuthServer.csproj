@@ -156,7 +156,6 @@
     <Compile Include="Infrastructure\DependencyInjection\WebApiModule.cs" />
     <Compile Include="Infrastructure\Managers\IClientManager.cs" />
     <Compile Include="Infrastructure\Managers\ManagerBase.cs" />
-    <Compile Include="Infrastructure\OAuthFlow.cs" />
     <Compile Include="Infrastructure\Objects\Client.cs" />
     <Compile Include="Infrastructure\Objects\Scope.cs" />
     <Compile Include="Infrastructure\PasswordHasher.cs" />
@@ -165,6 +164,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Common\DotNetDoodle.OAuthServer.Common.csproj">
+      <Project>{d984bd1f-8ea8-4164-b35c-6cbccf20b418}</Project>
+      <Name>DotNetDoodle.OAuthServer.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNetDoodle.OAuthServer.Data\DotNetDoodle.OAuthServer.Data.csproj">
       <Project>{26aa24b9-6b05-4be3-88a1-0ac282960690}</Project>
       <Name>DotNetDoodle.OAuthServer.Data</Name>

@@ -128,6 +128,7 @@
     <Compile Include="Extensions\ServiceProviderExtensions.cs" />
     <Compile Include="Infrastructure\Config\UnifiedConfigurationManager.cs" />
     <Compile Include="Infrastructure\Config\IConfigurationManager.cs" />
+    <Compile Include="Infrastructure\Crypto.cs" />
     <Compile Include="Infrastructure\DependencyInjection\AutofacConfig.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ConfigurationManagerModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ManagerModule.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Infrastructure\OAuthFlow.cs" />
     <Compile Include="Infrastructure\Objects\Client.cs" />
     <Compile Include="Infrastructure\Objects\Scope.cs" />
+    <Compile Include="Infrastructure\PasswordHasher.cs" />
     <Compile Include="Infrastructure\Providers\DotNetDoodleOAuthAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

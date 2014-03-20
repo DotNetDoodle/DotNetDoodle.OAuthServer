@@ -1,4 +1,5 @@
-﻿
+﻿using DotNetDoodle.OAuthServer.Common;
+
 namespace DotNetDoodle.OAuthServer.Infrastructure.Objects
 {
     public class Client

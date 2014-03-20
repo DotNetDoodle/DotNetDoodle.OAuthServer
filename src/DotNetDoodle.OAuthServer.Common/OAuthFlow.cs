@@ -1,5 +1,5 @@
 ﻿
-namespace DotNetDoodle.OAuthServer.Infrastructure
+namespace DotNetDoodle.OAuthServer.Common
 {
     public enum OAuthFlow : byte
     {

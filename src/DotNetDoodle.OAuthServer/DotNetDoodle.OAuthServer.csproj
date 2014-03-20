@@ -57,15 +57,39 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\DotNetDoodle.Owin.Dependencies.Autofac.0.2.1-pre01\lib\net45\DotNetDoodle.Owin.Dependencies.Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.0.0-beta1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0-beta1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.0.0-beta1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\..\packages\Microsoft.Owin.3.0.0-alpha1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.FileSystems">
+      <HintPath>..\..\packages\Microsoft.Owin.FileSystems.3.0.0-alpha1\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security">
       <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.0-alpha1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.2.0.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.0-alpha1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.StaticFiles">
+      <HintPath>..\..\packages\Microsoft.Owin.StaticFiles.3.0.0-alpha1\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
@@ -132,8 +156,11 @@
     <Compile Include="Extensions\ServiceProviderExtensions.cs" />
     <Compile Include="Infrastructure\Config\UnifiedConfigurationManager.cs" />
     <Compile Include="Infrastructure\Config\IConfigurationManager.cs" />
+    <Compile Include="Infrastructure\Crypto.cs" />
     <Compile Include="Infrastructure\DependencyInjection\AutofacConfig.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ConfigurationManagerModule.cs" />
+    <Compile Include="Infrastructure\DependencyInjection\IdentityContextModule.cs" />
+    <Compile Include="Infrastructure\DependencyInjection\IdentityModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\ManagerModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\OwinModule.cs" />
     <Compile Include="Infrastructure\DependencyInjection\WebApiModule.cs" />
@@ -145,14 +172,27 @@
     <Compile Include="Infrastructure\Jwt\X509SigningCredentialsProvider.cs" />
     <Compile Include="Infrastructure\Managers\IClientManager.cs" />
     <Compile Include="Infrastructure\Managers\ManagerBase.cs" />
-    <Compile Include="Infrastructure\OAuthFlow.cs" />
     <Compile Include="Infrastructure\Objects\Client.cs" />
     <Compile Include="Infrastructure\Objects\Scope.cs" />
+    <Compile Include="Infrastructure\PasswordHasher.cs" />
     <Compile Include="Infrastructure\Providers\DotNetDoodleOAuthAuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Common\DotNetDoodle.OAuthServer.Common.csproj">
+      <Project>{d984bd1f-8ea8-4164-b35c-6cbccf20b418}</Project>
+      <Name>DotNetDoodle.OAuthServer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Data\DotNetDoodle.OAuthServer.Data.csproj">
+      <Project>{26aa24b9-6b05-4be3-88a1-0ac282960690}</Project>
+      <Name>DotNetDoodle.OAuthServer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetDoodle.OAuthServer.Identity.Data\DotNetDoodle.OAuthServer.Identity.Data.csproj">
+      <Project>{4db2582a-8b7f-4e39-a12e-d66acb975376}</Project>
+      <Name>DotNetDoodle.OAuthServer.Identity.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

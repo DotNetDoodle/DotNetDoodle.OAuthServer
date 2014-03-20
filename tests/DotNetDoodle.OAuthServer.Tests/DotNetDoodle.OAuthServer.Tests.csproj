@@ -83,6 +83,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\DotNetDoodle.OAuthServer.Common\DotNetDoodle.OAuthServer.Common.csproj">
+      <Project>{d984bd1f-8ea8-4164-b35c-6cbccf20b418}</Project>
+      <Name>DotNetDoodle.OAuthServer.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\DotNetDoodle.OAuthServer\DotNetDoodle.OAuthServer.csproj">
       <Project>{076769e6-a9e9-4f59-a14b-cbe14fe2e431}</Project>
       <Name>DotNetDoodle.OAuthServer</Name>

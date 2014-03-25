@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Id
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuthServer.Common", "src\DotNetDoodle.OAuthServer.Common\DotNetDoodle.OAuthServer.Common.csproj", "{D984BD1F-8EA8-4164-B35C-6CBCCF20B418}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDoodle.OAuth.Domain", "src\DotNetDoodle.OAuth.Domain\DotNetDoodle.OAuth.Domain.csproj", "{8F2389C9-9FB2-4D33-963C-05A712B4272B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D984BD1F-8EA8-4164-B35C-6CBCCF20B418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D984BD1F-8EA8-4164-B35C-6CBCCF20B418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D984BD1F-8EA8-4164-B35C-6CBCCF20B418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2389C9-9FB2-4D33-963C-05A712B4272B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2389C9-9FB2-4D33-963C-05A712B4272B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2389C9-9FB2-4D33-963C-05A712B4272B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2389C9-9FB2-4D33-963C-05A712B4272B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

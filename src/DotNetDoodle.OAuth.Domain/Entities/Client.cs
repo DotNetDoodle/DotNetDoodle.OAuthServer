@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Security.Cryptography;
 using DotNetDoodle.OAuth.Domain.Utility;
 
 namespace DotNetDoodle.OAuth.Domain.Entities
 {
-    public class Client
+    public class Client : IObject, ICreationTrackable, IUpdatesTrackable, IDeleteable
     {
         public Client(string name, OAuthFlow allowedFlow)
         {
             if (name == null) throw new ArgumentNullException("name");
 
-            Id = Guid.NewGuid().ToString("N");
+            Id = GenerateKey(name);
             Name = name;
             AllowedFlow = allowedFlow;
             AllowRefreshToken = (allowedFlow == OAuthFlow.Code);
@@ -40,8 +41,10 @@ namespace DotNetDoodle.OAuth.Domain.Entities
         /// </summary>
         public bool IsEnabled { get; protected set; }
 
-        public DateTimeOffset CreatedOn { get; set; }
-        public DateTimeOffset LastUpdatedOn { get; set; }
+        public DateTimeOffset CreatedOn { get; protected set; }
+        public DateTimeOffset LastUpdatedOn { get; protected set; }
+
+        public DateTimeOffset? DeletedOn { get; private set; }
 
         public virtual bool HasClientSecret()
         {
@@ -53,10 +56,10 @@ namespace DotNetDoodle.OAuth.Domain.Entities
             if (clientSecret == null) throw new ArgumentNullException("clientSecret");
 
             ClientSecretHash = PasswordHasher.HashPassword(clientSecret);
-            LastUpdatedOn = DateTimeOffset.UtcNow;
+            Updated();
         }
 
-        public bool Verify(string clientSecret)
+        public virtual bool Verify(string clientSecret)
         {
             if (clientSecret == null) throw new ArgumentNullException("clientSecret");
             if (HasClientSecret() == false)
@@ -67,12 +70,30 @@ namespace DotNetDoodle.OAuth.Domain.Entities
             return PasswordHasher.VerifyHashedPassword(ClientSecretHash, clientSecret);
         }
 
+        public virtual void ConcentRequired()
+        {
+            if (RequireConsent == false)
+            {
+                RequireConsent = true;
+                Updated();
+            }
+        }
+
+        public virtual void ConcentNotRequired()
+        {
+            if (RequireConsent)
+            {
+                RequireConsent = false;
+                Updated();
+            }
+        }
+
         public virtual void Enable()
         {
             if (IsEnabled == false)
             {
                 IsEnabled = true;
-                LastUpdatedOn = DateTimeOffset.UtcNow;
+                Updated();
             }
         }
 
@@ -81,8 +102,31 @@ namespace DotNetDoodle.OAuth.Domain.Entities
             if (IsEnabled)
             {
                 IsEnabled = false;
-                LastUpdatedOn = DateTimeOffset.UtcNow;
+                Updated();
             }
+        }
+
+        public virtual void Delete()
+        {
+            if (DeletedOn == null)
+            {
+                DeletedOn = DateTimeOffset.UtcNow;
+                Updated();
+            }
+        }
+
+        // statics
+
+        public static string GenerateKey(string name)
+        {
+            return Guid.NewGuid().ToString("N");
+        }
+
+        // privates
+
+        private void Updated()
+        {
+            LastUpdatedOn = DateTimeOffset.UtcNow;
         }
     }
 }

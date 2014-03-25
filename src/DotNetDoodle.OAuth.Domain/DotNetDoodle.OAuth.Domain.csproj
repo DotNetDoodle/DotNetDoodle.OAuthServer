@@ -36,7 +36,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationStatus.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\ICreationTrackable.cs" />
+    <Compile Include="Entities\IDeleteable.cs" />
+    <Compile Include="Entities\IObject.cs" />
+    <Compile Include="Entities\IUpdatesTrackable.cs" />
+    <Compile Include="Entities\RedirectUri.cs" />
+    <Compile Include="Entities\Scope.cs" />
     <Compile Include="OAuthFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredGrantType.cs" />

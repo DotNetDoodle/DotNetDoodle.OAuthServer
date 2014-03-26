@@ -1,7 +1,7 @@
 ﻿
 namespace DotNetDoodle.OAuth.Domain
 {
-    public enum OAuthFlow : byte
+    public enum OAuthGrant : byte
     {
         Code = 1,
         Implicit = 2,

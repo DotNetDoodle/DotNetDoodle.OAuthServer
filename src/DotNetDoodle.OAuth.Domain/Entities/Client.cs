@@ -6,15 +6,15 @@ namespace DotNetDoodle.OAuth.Domain.Entities
 {
     public class Client : IObject, ICreationTrackable, IUpdatesTrackable, IDeleteable
     {
-        public Client(string name, OAuthFlow allowedFlow)
+        public Client(string name, OAuthGrant allowedGrant)
         {
             if (name == null) throw new ArgumentNullException("name");
 
             Id = GenerateKey(name);
             Name = name;
-            AllowedFlow = allowedFlow;
-            AllowRefreshToken = (allowedFlow == OAuthFlow.Code);
-            RequireConsent = (allowedFlow == OAuthFlow.Code || allowedFlow == OAuthFlow.Implicit);
+            AllowedGrant = allowedGrant;
+            IsRefreshTokenAllowed = (allowedGrant == OAuthGrant.Code);
+            RequireConsent = (allowedGrant == OAuthGrant.Code || allowedGrant == OAuthGrant.Implicit);
             IsEnabled = true;
             CreatedOn = DateTimeOffset.UtcNow;
             LastUpdatedOn = DateTimeOffset.UtcNow;
@@ -22,14 +22,14 @@ namespace DotNetDoodle.OAuth.Domain.Entities
 
         public string Id { get; protected set; }
         public string Name { get; protected set; }
-        public OAuthFlow AllowedFlow { get; protected set; }
+        public OAuthGrant AllowedGrant { get; protected set; }
 
         public string ClientSecretHash { get; protected set; }
 
         /// <summary>
         /// Indicates whether the refresh token should be issued for this client or not.
         /// </summary>
-        public bool AllowRefreshToken { get; protected set; }
+        public bool IsRefreshTokenAllowed { get; protected set; }
 
         /// <remarks>
         /// Only checked if (Flow == Code || Flow == Implicit)
@@ -61,13 +61,40 @@ namespace DotNetDoodle.OAuth.Domain.Entities
 
         public virtual bool Verify(string clientSecret)
         {
-            if (clientSecret == null) throw new ArgumentNullException("clientSecret");
+            if (clientSecret == null) 
+            { 
+                throw new ArgumentNullException("clientSecret"); 
+            }
+
             if (HasClientSecret() == false)
             {
                 throw new InvalidOperationException("Cannot verify the client because it does not have the client secret.");
             }
 
             return PasswordHasher.VerifyHashedPassword(ClientSecretHash, clientSecret);
+        }
+
+        public virtual void AllowRefreshToken()
+        {
+            if (IsRefreshTokenAllowed == false)
+            {
+                if (AllowedGrant != OAuthGrant.Code)
+                {
+                    throw new InvalidOperationException("Refresh token cannot be allowed for the client whose allowed grant is anything other than 'Authorization Code Grant'.");
+                }
+
+                IsRefreshTokenAllowed = true;
+                Updated();
+            }
+        }
+
+        public virtual void DisallowRefreshToken()
+        {
+            if (IsRefreshTokenAllowed)
+            {
+                IsRefreshTokenAllowed = false;
+                Updated();
+            }
         }
 
         public virtual void ConcentRequired()
